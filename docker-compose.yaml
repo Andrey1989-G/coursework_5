@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+    image: andrey1georgievich/coursedwork_5
+    ports:
+      - 80:80
