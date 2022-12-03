@@ -1,7 +1,8 @@
 from base import Arena
 from equipment import Equipment
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from classes import unit_classes
+from flask_config import db
 from unit import BaseUnit, PlayerUnit, EnemyUnit
 
 app = Flask(__name__)
@@ -18,6 +19,11 @@ arena = Arena() # TODO инициализируем класс арены
 def menu_page():
     # TODO рендерим главное меню (шаблон index.html)
     return render_template('index.html')
+
+@app.route("/base/")
+def return_from_base():
+    res = db.session.query().all()
+    return jsonify(res)
 
 
 @app.route("/fight/")
